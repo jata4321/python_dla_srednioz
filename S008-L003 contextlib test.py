@@ -12,8 +12,8 @@ class FileFromWeb:
 
     def download_file(self):
         response = requests.get(self.url)
-        with open(self.tmp_file, 'wb') as f:
-            f.write(response.content)
+        with open(self.tmp_file, 'wb') as fi:
+            fi.write(response.content)
         return self
 
     def close(self):

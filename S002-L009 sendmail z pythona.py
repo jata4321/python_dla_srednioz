@@ -3,7 +3,7 @@ import smtplib
 mailFrom = 'jata4321@w-web.pl'
 mailTo = 'jakub.taborowicz@gmail.com'
 mailSubject = 'Success 2!'
-mailBody = 'This is mail body'
+mailBody = 'This is mail body. Lorem ipsum.'
 
 message = """From: Person 1 <{}>
 To: Person 2 <{}>
@@ -20,6 +20,6 @@ try:
     server.login(user, password)
     server.sendmail(user, mailTo, message)
     server.close()
-    print('Mail sent')
+    print('Mail sent!')
 except BaseException:
     print('Failure sending mail!')

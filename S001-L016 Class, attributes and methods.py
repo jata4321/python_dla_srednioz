@@ -1,11 +1,15 @@
+kind_of_cake = 'cake'
+
+
 class Cake:
-    def __init__(self, name, kind, taste, additives, filling, gluten_free=False):
+    def __init__(self, name, kind, taste, additives, filling, text, gluten_free=False):
         self._Cake__gluten_free = None
         self.name = name
         self.kind = kind
         self.taste = taste
         self.additive = additives
         self.filling = filling
+        self.__text = text
         self.__gluten_free = gluten_free
 
     def show_info(self):
@@ -15,10 +19,22 @@ class Cake:
         self.filling = new_filling
         return self.filling
 
+    def get_text(self):
+        return self.__text
 
-cake_01 = Cake('Brownie', 'muss', 'sweet', 'milk', 'none', True)
-cake_02 = Cake('Cheesecake', 'cake', 'v. sweet', ['cheese', 'resins'], 'none')
-cake_03 = Cake('Vanilla cake', 'cake', 'vanilla', 'nuts', 'cream')
+    def set_text(self, new_text):
+        if kind_of_cake == 'cake':
+            self.__text = new_text
+            print('Status changed')
+        else:
+            print('Status unchanged')
+
+    change_text = property(get_text, set_text, None)
+
+
+cake_01 = Cake('Brownie', 'muss', 'sweet', 'milk', 'none', True, 'Hi')
+cake_02 = Cake('Cheesecake', 'cake', 'v. sweet', ['cheese', 'resins'], 'none', 'Hi ho!')
+cake_03 = Cake('Vanilla cake', 'cake', 'vanilla', 'nuts', '', 'cream')
 
 list_of_cakes = [cake_01, cake_02, cake_03]
 
@@ -38,3 +54,7 @@ cake_01.show_info()
 
 cake_01._Cake__gluten_free = True
 cake_01.show_info()
+
+print(cake_02.change_text)
+cake_02.change_text = 'Happy birthday!'
+print(cake_02.change_text)

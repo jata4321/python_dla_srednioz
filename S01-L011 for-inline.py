@@ -2,13 +2,14 @@ product = [{a: b} for a in range(1000) for b in range(5000) if a % 5 == 1 if b %
 print(product)
 
 ports = ['WAW', 'KRK', 'GDN', 'KTW', 'WMI', 'WRO', 'POZ', 'RZE', 'SZZ',
-         'LUZ', 'BZG', 'LCJ', 'SZY', 'IEG', 'RDO']
+         'LUZ', 'BZG', 'LCJ', 'SZY', 'IEG', 'RDO', 'BER', 'LOS', 'LIZ', 'PAR', 'ROM']
 
-routs = list()
-routs = [(port_a, port_b) for port_a in ports for port_b in ports if port_a != port_b]
-print(routs)
+routes = list()
+routes = [(port_a, port_b) for port_a in ports for port_b in ports if port_a != port_b]
+print(routes)
 
-routs = list()
-routs = [(port_a, port_b) for port_a in ports for port_b in ports if port_a < port_b]
-print(routs)
-print(len(routs))
+routes = list()
+routes = [(port_a, port_b) for port_a in ports for port_b in ports if port_a < port_b]
+print(routes)
+
+print(len(routes))

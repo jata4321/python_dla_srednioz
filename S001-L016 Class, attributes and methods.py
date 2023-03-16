@@ -1,3 +1,7 @@
+import pickle
+import os
+import glob
+
 kind_of_cake = 'cake'
 
 
@@ -31,6 +35,24 @@ class Cake:
 
     change_text = property(get_text, set_text, None)
 
+    def save_to_file(self, path, filename, ext='.bks'):
+        file_path = os.path.join(path, filename + ext)
+        with open(file_path, 'wb+') as f:
+            pickle.dump(self, f)
+
+    @classmethod
+    def read_from_file(cls, path, filename, ext='.bks'):
+        file_path = os.path.join(path, filename + ext)
+        with open(file_path, 'rb+') as f:
+            loaded_cake = pickle.load(f)
+        return loaded_cake
+
+    @staticmethod
+    def list_picked_cakes(path, ext='.bks'):
+        file_path = os.path.join(path + '*' + ext)
+        cake_list = glob.glob(file_path)
+        return cake_list
+
 
 cake_01 = Cake('Brownie', 'muss', 'sweet', 'milk', 'none', True, 'Hi')
 cake_02 = Cake('Cheesecake', 'cake', 'v. sweet', ['cheese', 'resins'], 'none', 'Hi ho!')
@@ -58,3 +80,12 @@ cake_01.show_info()
 print(cake_02.change_text)
 cake_02.change_text = 'Happy birthday!'
 print(cake_02.change_text)
+
+cake_02.save_to_file('c:/temp/', 'cake_02')
+caked = Cake.read_from_file('c:/temp/', 'cake_02')
+
+print('Pickled cake is:')
+caked.show_info()
+
+print('List of files:')
+print(*Cake.list_picked_cakes('c:/temp/'))

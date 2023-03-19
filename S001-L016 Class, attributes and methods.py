@@ -4,6 +4,7 @@ import os
 import glob
 
 kind_of_cake = 'cake'
+bakery_offer = list()
 
 
 class Cake:
@@ -16,6 +17,7 @@ class Cake:
         self.filling = filling
         self.__text = text
         self.__gluten_free = gluten_free
+        bakery_offer.append(self)
 
     def show_info(self):
         return print(f'{str.upper(self.name)}, {self.taste}, {self.filling}, {self.__gluten_free}')
@@ -50,11 +52,21 @@ class Cake:
             pickle.dump(self, f)
 
     def export_to_csv(self, path, filename, ext='.csv'):
-        file_path = os.path.join(path, filename+ext)
+        file_path = os.path.join(path, filename + ext)
         with open(file_path, 'w+') as f:
             cursor = csv.writer(f, delimiter=',')
             cursor.writerow([self.name, self.filling, self.taste])
             print('Data export success!')
+
+    @classmethod
+    def export_all_to_csv(cls, path, filename, ext='_all.csv'):
+        file_path = os.path.join(path, filename + ext)
+        with open(file_path, 'w+') as f:
+            cursor = csv.writer(f, delimiter=',')
+            cursor.writerow(['Name', 'Filling', 'Taste'])
+            for c in bakery_offer:
+                cursor.writerow([c.name, c.filling, c.taste])
+            print('Full data export success!')
 
     @classmethod
     def read_from_file(cls, path, filename, ext='.bks'):
@@ -112,3 +124,5 @@ cake_02.text
 
 cake_01.export_to_csv('./', 'cake_text')
 print(dir(Cake))
+
+cake_01.export_all_to_csv('./', 'cake_text')

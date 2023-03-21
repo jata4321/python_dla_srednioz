@@ -1,8 +1,10 @@
 import pickle
+import csv
 import os
 import glob
 
 kind_of_cake = 'cake'
+bakery_offer = list()
 
 
 class Cake:
@@ -15,6 +17,7 @@ class Cake:
         self.filling = filling
         self.__text = text
         self.__gluten_free = gluten_free
+        bakery_offer.append(self)
 
     def show_info(self):
         return print(f'{str.upper(self.name)}, {self.taste}, {self.filling}, {self.__gluten_free}')
@@ -33,12 +36,37 @@ class Cake:
         else:
             print('Status unchanged')
 
+    @property
+    def text(self):
+        return print(f'New text on cake is set to "{self.__text}"')
+
+    @text.setter
+    def text(self, new_text):
+        self.__text = new_text
+
     change_text = property(get_text, set_text, None)
 
     def save_to_file(self, path, filename, ext='.bks'):
         file_path = os.path.join(path, filename + ext)
         with open(file_path, 'wb+') as f:
             pickle.dump(self, f)
+
+    def export_to_csv(self, path, filename, ext='.csv'):
+        file_path = os.path.join(path, filename + ext)
+        with open(file_path, 'w+') as f:
+            cursor = csv.writer(f, delimiter=',')
+            cursor.writerow([self.name, self.filling, self.taste])
+            print('Data export success!')
+
+    @classmethod
+    def export_all_to_csv(cls, path, filename, ext='_all.csv'):
+        file_path = os.path.join(path, filename + ext)
+        with open(file_path, 'w+') as f:
+            cursor = csv.writer(f, delimiter=',')
+            cursor.writerow(['Name', 'Filling', 'Taste'])
+            for c in bakery_offer:
+                cursor.writerow([c.name, c.filling, c.taste])
+            print('Full data export success!')
 
     @classmethod
     def read_from_file(cls, path, filename, ext='.bks'):
@@ -81,11 +109,20 @@ print(cake_02.change_text)
 cake_02.change_text = 'Happy birthday!'
 print(cake_02.change_text)
 
-cake_02.save_to_file('c:/temp/', 'cake_02')
-caked = Cake.read_from_file('c:/temp/', 'cake_02')
+# this line was changed due to different operating system switch. Linux versus Windows.
+cake_02.save_to_file('./', 'cake_02')
+caked = Cake.read_from_file('./', 'cake_02')
 
 print('Pickled cake is:')
 caked.show_info()
 
 print('List of files:')
-print(*Cake.list_picked_cakes('c:/temp/'))
+print(*Cake.list_picked_cakes('./'))  # This line was also changed under Linux OS. Should be reverted under Windows.
+
+cake_02.text = "bla bla"
+cake_02.text
+
+cake_01.export_to_csv('./', 'cake_text')
+print(dir(Cake))
+
+cake_01.export_all_to_csv('./', 'cake_text')

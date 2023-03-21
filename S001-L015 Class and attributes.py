@@ -7,6 +7,7 @@ class Cake():
         self.filling = filling
 
 
+# df
 cake_01 = Cake('Brownie', 'muss', 'sweet', 'milk', 'none')
 cake_02 = Cake('Cheesecake', 'cake', 'v. sweet', ['cheese', 'resins'], 'nothing')
 cake_03 = Cake('Vanilla cake', 'cake', 'vanilla', 'nuts', 'cream')

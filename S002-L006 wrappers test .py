@@ -8,6 +8,7 @@ def wrapper_time(a_function):
         result = a_function(*args, **kwargs)
         end_time = time()
         print(end_time - start_time)
+
         return result
 
     return a_wrapped_function
@@ -28,4 +29,4 @@ def get_sequence(n):
 #
 # print(new_fun(19))
 
-print(get_sequence(3))
+print(get_sequence(4))

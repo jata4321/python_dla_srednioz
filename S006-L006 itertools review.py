@@ -42,7 +42,7 @@ results = itertools.takewhile(lambda x: x < 5, data)
 for result in results:
     print(result)
 
-# Product cathesian multiplier
+# Product carthesian multiplier
 results = itertools.product(cars, selection)
 for result in results:
     print(result)

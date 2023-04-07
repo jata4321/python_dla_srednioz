@@ -37,4 +37,4 @@ class DatesFromNow:
         return self
 
 
-calendar_day = DatesFromNow(2000, 1, 1, 365)
+DatesFromNow(2000, 1, 1, 365)

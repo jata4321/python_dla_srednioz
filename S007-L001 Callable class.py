@@ -11,5 +11,5 @@ new_list = NoDuplicates([])
 dirty_list = 1
 new_list(dirty_list)
 print(new_list.lists)
-new_list(7, z=2)
+new_list(7, 9, z=2)
 print(new_list.lists)

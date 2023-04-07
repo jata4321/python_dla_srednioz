@@ -3,20 +3,20 @@ import math
 from itertools import combinations_with_replacement, combinations, permutations
 from math import factorial, pow
 
-notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
-notes_set = 4
+notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C#', 'D#','G#','F#','A#']
+notes_set = 12
 
-for enum, combination in enumerate(permutations(notes, notes_set)):
-    pass
+# for enum, combination in enumerate(permutations(notes, notes_set)):
+#     pass
+#
+# print(enum)
+#
+# combination_number = factorial(len(notes)) / factorial(len(notes) - notes_set)
+# print(combination_number)
 
-print(enum)
+# notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 
-combination_number = factorial(len(notes)) / factorial(len(notes) - notes_set)
-print(combination_number)
-
-notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
-
-for x in it.permutations(notes, 4):
+for x in it.permutations(notes, 8):
     print(x)
 
 print("4-notes melody, notes cannot repeat - it is variation without repeating - there are {} possibilities".format(

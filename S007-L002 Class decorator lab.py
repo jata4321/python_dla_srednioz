@@ -40,6 +40,7 @@ class NoDuplicates:
         self.fun(cake, no_duplicate_list)
 
 
+
 cake01 = Cake('Vanilla Cake', 'cake', 'vanilla', ['chocolate', 'nuts'], 'cream')
 
 

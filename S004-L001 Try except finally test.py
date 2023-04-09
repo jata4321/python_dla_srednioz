@@ -18,6 +18,7 @@ def save_url_to_file(url, temp_file_path):
     with open(temp_file_path, "wb") as f:
         f.write(body)
 
+
 try:
     if os.path.exists(temp_file_path):
         os.remove(temp_file_path)

@@ -2,7 +2,7 @@ from time import time
 import datetime as dt
 
 
-class Stoper:
+class Stopper:
     def __init__(self, fun):
         self.fun = fun
 
@@ -14,7 +14,7 @@ class Stoper:
         return print(f'Time lapsed: {stop_time - start_time}')
 
 
-@Stoper
+@Stopper
 class DatesFromNow:
     def __init__(self, year, month, day, count):
         self.date = dt.date(year, month, day)
@@ -37,4 +37,4 @@ class DatesFromNow:
         return self
 
 
-DatesFromNow(2000, 1, 1, 365)
+DatesFromNow(2000, 1, 1, count=365000)
